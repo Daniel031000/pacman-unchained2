@@ -1,13 +1,15 @@
 import pygame
 import sys
 import global_variables as gv
+import game_logic as gl
 import animation as ani
 pygame.init()
 
 BLACK = (0, 0, 0)
 screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel`s PacMan")
-
+# call pay_man
+pacman = gl.pacman()
 
 while 1:
     # event loop
