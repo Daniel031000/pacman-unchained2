@@ -10,6 +10,7 @@ screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel`s PacMan")
 # call pay_man
 pacman = gl.pacman()
+pacman_position_Up = [pacman.up().position[0], pacman.up().position[1]]
 
 while 1:
     # event loop
