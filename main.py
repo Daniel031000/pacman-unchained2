@@ -17,8 +17,6 @@ pacman_position_Up = [pacman.up().position[0], pacman.up().position[1]]
 
 
 while 1:
-
-
     # event loop
     gv.pygame_events = pygame.event
     for event in gv.pygame_events.get():
@@ -29,7 +27,7 @@ while 1:
 
 
     # animation
-    ani.blit_level(LEVEL_PATHS[2], screen)
+    ani.blit_level(LEVEL_PATHS[0], screen)
 
     gv.pacman_ani_counter = gv.pacman_ani_counter + 1
     if gv.pacman_ani_counter >= 5:
