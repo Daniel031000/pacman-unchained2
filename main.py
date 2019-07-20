@@ -11,10 +11,14 @@ pygame.display.set_caption("Daniel`s PacMan")
 
 while 1:
     # event loop
-    for event in pygame.event.get():
+    gv.pygame_events = pygame.event
+    for event in gv.pygame_events.get():
         if event.type == pygame.QUIT:
             sys.exit()
+
     # game logic loop
+
+
     # animation
     level_1 = pygame.image.load("Graphics/levels/level1.png")
     level_1_rect =level_1.get_rect()
