@@ -16,5 +16,8 @@ while 1:
             sys.exit()
     # game logic loop
     # animation
-    screen.blit(pygame.image.load("Graphics/levels/level1.png"),(1000, 500))
+
+    level_1 = pygame.image.load("Graphics/levels/level1.png")
+    level_1_rect =level_1.get_rect()
+    screen.blit(level_1, level_1_rect)
     pygame.display.flip()
