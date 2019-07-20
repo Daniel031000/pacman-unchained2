@@ -13,4 +13,3 @@ class pacman(self):
     def down(self):
     def left(self):
     def right(self):
-        
