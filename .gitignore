@@ -4,4 +4,5 @@
 .idea/pacman-unchained2.iml
 .idea/vsc.xml
 .idea/workspace.xml
-
+__pycache__/animation.cpython-36.pyc
+__pycache__/global_variables.cpython-36.pyc
