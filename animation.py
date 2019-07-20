@@ -1,5 +1,13 @@
 import pygame
 import global_variables as gv
-def load_image (path, surface):
+
+PACMAN_IMAGES = []
+
+def blit_level(path, surface):
     level = pygame.image.load(path)
-    surface.blit(level, gv.screensize)
+    surface.blit(level, level.get_rect())
+
+
+def blit_player(surface):
+
+    surface.blit()
