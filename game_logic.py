@@ -11,7 +11,7 @@ class Pacman:
         y = 100
         self.position = [x, y]
         self.movement_speed = 5  # (movement_speed = pixels/tick)
-
+        gv.pacman_position = self.position
     # define every direction
 
     # moves the pacman up by "movement_speed"
