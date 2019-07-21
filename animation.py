@@ -12,10 +12,6 @@ def blit_level(path, surface):
 
 
 # takes the position of pacman and draws him to the screen
-def blit_player(surface):
-    image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
-    pacman_image = pygame.image.load(PACMAN_IMAGES[image_nr - 1])
-    pacman_image_rect = pacman_image.get_rect()
-    pacman_image_rect.x = gv.pacman.position[0]
-    pacman_image_rect.y = gv.pacman.position[1]
-    surface.blit(pacman_image, pacman_image_rect)
+
+
+
