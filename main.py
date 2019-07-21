@@ -10,7 +10,6 @@ pygame.init()
 BLACK = (0, 0, 0)
 LEVEL_PATHS = ["Graphics/levels/level1.png", "Graphics/levels/level2.png", "Graphics/levels/level3.png"]
 
-
 screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel's PacMan")
 clock = pygame.time.Clock()
