@@ -7,6 +7,7 @@ import animation as ani
 # define player class
 class Pacman:
     def __init__(self):
+        # loading every image
         self.PACMAN_SOURCE_LEFT = ["Graphics/pacman/Left/pacman0.png", "Graphics/pacman/Left/pacman1.png",
                                    "Graphics/pacman/Left/pacman2.png", "Graphics/pacman/Left/pacman3.png"]
         self.PACMAN_SOURCE_RIGHT = ["Graphics/pacman/Right/pacman0.png", "Graphics/pacman/Right/pacman1.png",
@@ -20,20 +21,18 @@ class Pacman:
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[0])
-        x = 100
-        y = 100
+        x = 480
+        y = 200
         self.position = [x, y]
         self.movement_speed = 4  # (movement_speed = pixels/tick)
         self.rotate_direction = 2
 
     # define every direction
-
     # moves the pacman up by "movement_speed"
     def up(self):
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP
-
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
     def down(self):
         self.movement_direction[1] = 1
         self.movement_direction[0] = 0
