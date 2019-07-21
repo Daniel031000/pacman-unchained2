@@ -70,27 +70,12 @@ class Pacman:
         image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[image_nr - 1])
         pygame.transform.rotate(self.image, 45)
-        self.rotate_pacman()
         pacman_image_rect = self.image.get_rect()
         pacman_image_rect.x = gv.pacman.position[0]
         pacman_image_rect.y = gv.pacman.position[1]
         surface.blit(self.image, pacman_image_rect)
 
-    def rotate_pacman(self):
-        # up
-        if self.rotate_direction == 0:
-            pass
-        # down
-        elif self.rotate_direction == 1:
 
-            pass
-        # left
-        elif self.rotate_direction == 2:
-            pass
-
-        # right
-        elif self.rotate_direction == 3:
-            pygame.transform.flip(self.image, True, False)
 
 
     '''def pacman_counter_mocement():
