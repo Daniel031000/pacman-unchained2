@@ -22,4 +22,5 @@ class Ghost_random:
             self.movementDirection[0] = 0
             self.position = self.position[self.position[0], self.position[1] - self.movement_speed]
         else:
+            # if self.movement
             break
