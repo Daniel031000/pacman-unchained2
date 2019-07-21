@@ -13,18 +13,18 @@ pygame.display.set_caption("Daniel's PacMan")
 clock = pygame.time.Clock()
 
 # instantiate pacman class
-pacman = gl.Pacman()
+gv.pacman = gl.Pacman()
 gv.pacman_tick_counter = 0
 
 while 1:
     # event loop
-    gv.pygame_events = pygame.event
-    for event in gv.pygame_events.get():
+    gv.pygame_events = pygame.event.get()
+    for event in gv.pygame_events:
         if event.type == pygame.QUIT:
             sys.exit()
 
     # game logic loop
-    pacman.pacman_event_handler()
+    gv.pacman.pacman_event_handler(gv.pygame_events)
 
     # animation
     ani.blit_level(LEVEL_PATHS[0], screen)
