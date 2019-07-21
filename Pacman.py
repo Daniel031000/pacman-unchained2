@@ -2,8 +2,13 @@ import pygame
 import global_variables as gv
 
 
+
 # define player class
 class Pacman:
+    def pacman_counter_mocement():
+        gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
+        if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:
+            gv.pacman.ani_tick_counter = 0
     def __init__(self):
         self.ANI_DURATION = 16
         self.movement_direction = [0, 0]
@@ -18,22 +23,26 @@ class Pacman:
 
     # moves the pacman up by "movement_speed"
     def up(self):
+        Pacman.pacman_counter_mocement()
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
         # update position when moving
         self.position = [self.position[0], self.position[1] - self.movement_speed]
 
     def down(self):
+        Pacman.pacman_counter_mocement()
         self.movement_direction[1] = 1
         self.movement_direction[0] = 1
         self.position = [self.position[0], self.position[1] + self.movement_speed]
 
     def left(self):
+        Pacman.pacman_counter_mocement()
         self.movement_direction[0] = -1
         self.movement_direction[1] = 0
         self.position = [self.position[0] - self.movement_speed, self.position[1]]
 
     def right(self):
+        if Pacman.pacman_counter_mocement() == gv.pacman.
         self.movement_direction[0] = 1
         self.movement_direction[1] = 0
         self.position = [self.position[0] + self.movement_speed, self.position[1]]
