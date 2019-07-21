@@ -5,7 +5,7 @@ class Ghost_random:
     def __init__(self):
         self.movement_direction = [0,0]
         self.movement_speed = 5
-        self.position = [x,y]
+        self.position = [x, y]
 
     def moving_randomly(self):
         self.movement_direction[random(0, 1)] = random(-1, 1)
