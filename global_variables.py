@@ -1,9 +1,7 @@
-PACMAN_ANI_DURATION = 16  # duration of the eating animation in game ticks
+  # duration of the eating animation in game ticks
 screensize = (1000, 500)
-pygame_events = []
-pacman_tick_counter = 0
+keys_pressed = []
 pacman = 0
-pacman_position = []
 
 
 def pixel_colour(playerPosition, pygame_):

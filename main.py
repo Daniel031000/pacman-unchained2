@@ -18,20 +18,20 @@ gv.pacman_tick_counter = 0
 
 while 1:
     # event loop
-    gv.pygame_events = pygame.event.get()
-    for event in gv.pygame_events:
+    gv.keys_pressed = pygame.key.get_pressed()
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
 
     # game logic loop
-    gv.pacman.pacman_event_handler(gv.pygame_events)
+    gv.pacman.pacman_event_handler(gv.keys_pressed)
 
     # animation
     ani.blit_level(LEVEL_PATHS[0], screen)
 
-    gv.pacman_tick_counter = gv.pacman_tick_counter + 1
-    if gv.pacman_tick_counter >= gv.PACMAN_ANI_DURATION - 1:
-        gv.pacman_tick_counter = 0
+    gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
+    if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:
+        gv.pacman.ani_tick_counter = 0
 
     ani.blit_player(screen)
 
