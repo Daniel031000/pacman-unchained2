@@ -3,6 +3,7 @@ import sys
 import global_variables as gv
 import Pacman as gl
 import animation as ani
+
 pygame.init()
 
 BLACK = (0, 0, 0)
