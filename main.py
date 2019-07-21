@@ -1,7 +1,7 @@
 import pygame
 import sys
 import global_variables as gv
-import game_logic as gl
+import Pacman as gl
 import animation as ani
 pygame.init()
 
