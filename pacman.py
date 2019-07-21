@@ -3,18 +3,23 @@ import global_variables as gv
 import animation as ani
 
 
-PACMAN_IMAGES_LEFT = ["Graphics/pacman/Left/pacman0.png", "Graphics/pacman/Left/pacman1.png", "Graphics/pacman/Left/pacman2.png", "Graphics/pacman/Left/pacman3.png"]
-PACMAN_IMAGES_RIGHT = ["Graphics/pacman/Right/pacman0.png", "Graphics/pacman/Right/pacman1.png", "Graphics/pacman/Right/pacman2.png", "Graphics/pacman/Right/pacman3.png"]
-PACMAN_IMAGES_UP = ["Graphics/pacman/Up/pacman0.png", "Graphics/pacman/Up/pacman1.png", "Graphics/pacman/Up/pacman2.png", "Graphics/pacman/Up/pacman3.png"]
-PACMAN_IMAGES_DOWN = ["Graphics/pacman/Down/pacman0.png", "Graphics/pacman/Down/pacman1.png", "Graphics/pacman/Down/pacman2.png", "Graphics/pacman/Down/pacman3.png"]
 
 # define player class
 class Pacman:
     def __init__(self):
+        self.PACMAN_SOURCE_LEFT = ["Graphics/pacman/Left/pacman0.png", "Graphics/pacman/Left/pacman1.png",
+                                   "Graphics/pacman/Left/pacman2.png", "Graphics/pacman/Left/pacman3.png"]
+        self.PACMAN_SOURCE_RIGHT = ["Graphics/pacman/Right/pacman0.png", "Graphics/pacman/Right/pacman1.png",
+                                     "Graphics/pacman/Right/pacman2.png", "Graphics/pacman/Right/pacman3.png"]
+        self.PACMAN_SOURCE_UP = ["Graphics/pacman/Up/pacman0.png", "Graphics/pacman/Up/pacman1.png",
+                                  "Graphics/pacman/Up/pacman2.png", "Graphics/pacman/Up/pacman3.png"]
+        self.PACMAN_SOURCE_DOWN = ["Graphics/pacman/Down/pacman0.png", "Graphics/pacman/Down/pacman1.png",
+                                    "Graphics/pacman/Down/pacman2.png", "Graphics/pacman/Down/pacman3.png"]
         self.ANI_DURATION = 16
         self.movement_direction = [0, 0]
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
-        self.image = pygame.image.load(PACMAN_IMAGES[0])
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+        self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[0])
         x = 100
         y = 100
         self.position = [x, y]
@@ -27,20 +32,19 @@ class Pacman:
     def up(self):
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
-        # update position when moving
-
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP
     def down(self):
         self.movement_direction[1] = 1
         self.movement_direction[0] = 0
-
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
     def left(self):
         self.movement_direction[0] = -1
         self.movement_direction[1] = 0
-
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
     def right(self):
         self.movement_direction[0] = 1
         self.movement_direction[1] = 0
-
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
     def move(self):
         x = self.position[0] + (self.movement_speed * self.movement_direction[0])
         y = self.position[1] + (self.movement_speed * self.movement_direction[1])
@@ -64,7 +68,7 @@ class Pacman:
 
     def blit_pacman(self, surface):
         image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
-        self.image = pygame.image.load(PACMAN_IMAGES[image_nr - 1])
+        self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[image_nr - 1])
         pygame.transform.rotate(self.image, 45)
         self.rotate_pacman()
         pacman_image_rect = self.image.get_rect()
