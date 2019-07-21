@@ -9,10 +9,6 @@ class Pacman:
         self.movement_direction = [0, 0]
         x = 100
         y = 100
-<<<<<<< HEAD
-
-=======
->>>>>>> 869b9d4c7ecc052b742d9cddca60a981b5743a06
         self.position = [x, y]
         self.movement_speed = 5  # (movement_speed = pixels/tick)
 
@@ -20,7 +16,6 @@ class Pacman:
 
     # moves the pacman up by "movement_speed"
     def up(self):
-<<<<<<< HEAD
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
         # update position when moving   
@@ -41,13 +36,6 @@ class Pacman:
         self.movement_direction[1] = 0
         self.position = [self.position[0] + self.movement_speed, self.position[1]]
         gv.pacman_position = self.position
-=======
-        for event in gv.pygame_events.get():
-            if gv.pygame_events == pygame.K_w:
-                self.movement_direction[1] = -1
-                self.movement_direction[0] = 0
-                y = y-1
-                gv.pacman_position = [self.position[0], self.position[1]]
 
     def down(self):
         for event in gv.pygame_events:
@@ -77,6 +65,3 @@ class Pacman:
     def pacman_event_handler(events):
         pass
 
-
-
->>>>>>> 869b9d4c7ecc052b742d9cddca60a981b5743a06
