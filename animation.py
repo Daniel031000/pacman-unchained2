@@ -2,7 +2,7 @@ import pygame
 import global_variables as gv
 
 
-PACMAN_IMAGES = []
+PACMAN_IMAGES = ["Graphics/pacman/pacman0.png"]
 
 
 def blit_level(path, surface):
@@ -11,5 +11,5 @@ def blit_level(path, surface):
 
 
 def blit_player(surface):
-        
+
     surface.blit()
