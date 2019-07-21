@@ -75,6 +75,8 @@ class Pacman:
         pacman_image_rect.y = gv.pacman.position[1]
         surface.blit(self.image, pacman_image_rect)
 
+#    gv.pixel_colour_detection(self.position, gv.keys_pressed, self.movement_speed)
+
 
 
 

@@ -3,9 +3,10 @@ import pygame
 screensize = (1000, 500)
 keys_pressed = []
 pacman = 0
+pixel_colour = []
 
 
-def pixel_colour(player_position, pygame_events, movement_speed):
+def pixel_colour_detection(player_position, pygame_events, movement_speed):  # detecting the next upcoming colour
     size = 25
     if pygame_events == pygame.K_LEFT:  # left
         strip_starting_point = [player_position[0] - movement_speed, player_position[1]]  # starting point
