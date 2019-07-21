@@ -3,8 +3,10 @@ import global_variables as gv
 import animation as ani
 
 
-PACMAN_IMAGES = ["Graphics/pacman/pacman0.png", "Graphics/pacman/pacman1.png", "Graphics/pacman/pacman2.png", "Graphics/pacman/pacman3.png"]
-
+PACMAN_IMAGES_LEFT = ["Graphics/pacman/Left/pacman0.png", "Graphics/pacman/Left/pacman1.png", "Graphics/pacman/Left/pacman2.png", "Graphics/pacman/Left/pacman3.png"]
+PACMAN_IMAGES_RIGHT = ["Graphics/pacman/Right/pacman0.png", "Graphics/pacman/Right/pacman1.png", "Graphics/pacman/Right/pacman2.png", "Graphics/pacman/Right/pacman3.png"]
+PACMAN_IMAGES_UP = ["Graphics/pacman/Up/pacman0.png", "Graphics/pacman/Up/pacman1.png", "Graphics/pacman/Up/pacman2.png", "Graphics/pacman/Up/pacman3.png"]
+PACMAN_IMAGES_DOWN = ["Graphics/pacman/Down/pacman0.png", "Graphics/pacman/Down/pacman1.png", "Graphics/pacman/Down/pacman2.png", "Graphics/pacman/Down/pacman3.png"]
 
 # define player class
 class Pacman:
@@ -23,23 +25,19 @@ class Pacman:
 
     # moves the pacman up by "movement_speed"
     def up(self):
-        #Pacman.pacman_counter_mocement()
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
         # update position when moving
 
     def down(self):
-        #Pacman.pacman_counter_mocement()
         self.movement_direction[1] = 1
         self.movement_direction[0] = 0
 
     def left(self):
-        #Pacman.pacman_counter_mocement()
         self.movement_direction[0] = -1
         self.movement_direction[1] = 0
 
     def right(self):
-        #if Pacman.pacman_counter_mocement() == gv.pacman.
         self.movement_direction[0] = 1
         self.movement_direction[1] = 0
 
