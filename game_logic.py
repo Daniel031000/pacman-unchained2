@@ -37,30 +37,6 @@ class Pacman:
         self.position = [self.position[0] + self.movement_speed, self.position[1]]
         gv.pacman_position = self.position
 
-    def down(self):
-        for event in gv.pygame_events:
-            if gv.pygame_events == pygame.K_s:
-                self.movement_direction[1] = 1
-                self.movement_direction[0] = 1
-                y = y+1
-                gv.pacman_position = [self.position[0], self.position[1]]
-
-    def left(self):
-        for event in gv.pygame_events:
-            if gv.pygame_events == pygame.K_a:
-                self.movement_direction[0] = -1
-                self.movement_direction[1] = 0
-                x = x-1
-                gv.pygame_events = [self.position[0], self.position[1]]
-
-    def right(self):
-        for event in gv.pygame_events:
-            if gv.pygame_events == pygame.K_d:
-                self.movement_direction[0] = 1
-                self.movement_direction[1] = 0
-                x = x+1
-                gv.pacman_position = [self.position[0], self.position[1]]
-
     # loops through the events and calls the appropriate movement function upon an event
     def pacman_event_handler(events):
         pass
