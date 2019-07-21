@@ -33,18 +33,22 @@ class Pacman:
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP
+
     def down(self):
         self.movement_direction[1] = 1
         self.movement_direction[0] = 0
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+
     def left(self):
         self.movement_direction[0] = -1
         self.movement_direction[1] = 0
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+
     def right(self):
         self.movement_direction[0] = 1
         self.movement_direction[1] = 0
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+
     def move(self):
         x = self.position[0] + (self.movement_speed * self.movement_direction[0])
         y = self.position[1] + (self.movement_speed * self.movement_direction[1])

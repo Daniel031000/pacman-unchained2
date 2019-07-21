@@ -3,6 +3,8 @@ import pygame
 screensize = (1000, 500)
 keys_pressed = []
 pacman = 0
+level_pellets = []
+current_level = 0
 
 
 def pixel_colour(player_position, pygame_events, movement_speed):
