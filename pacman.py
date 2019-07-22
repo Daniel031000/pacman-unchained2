@@ -3,7 +3,6 @@ import global_variables as gv
 import animation as ani
 
 
-
 # define player class
 class Pacman:
     def __init__(self):
@@ -11,11 +10,11 @@ class Pacman:
         self.PACMAN_SOURCE_LEFT = ["Graphics/pacman/Left/pacman0.png", "Graphics/pacman/Left/pacman1.png",
                                    "Graphics/pacman/Left/pacman2.png", "Graphics/pacman/Left/pacman3.png"]
         self.PACMAN_SOURCE_RIGHT = ["Graphics/pacman/Right/pacman0.png", "Graphics/pacman/Right/pacman1.png",
-                                     "Graphics/pacman/Right/pacman2.png", "Graphics/pacman/Right/pacman3.png"]
+                                    "Graphics/pacman/Right/pacman2.png", "Graphics/pacman/Right/pacman3.png"]
         self.PACMAN_SOURCE_UP = ["Graphics/pacman/Up/pacman0.png", "Graphics/pacman/Up/pacman1.png",
-                                  "Graphics/pacman/Up/pacman2.png", "Graphics/pacman/Up/pacman3.png"]
+                                 "Graphics/pacman/Up/pacman2.png", "Graphics/pacman/Up/pacman3.png"]
         self.PACMAN_SOURCE_DOWN = ["Graphics/pacman/Down/pacman0.png", "Graphics/pacman/Down/pacman1.png",
-                                    "Graphics/pacman/Down/pacman2.png", "Graphics/pacman/Down/pacman3.png"]
+                                   "Graphics/pacman/Down/pacman2.png", "Graphics/pacman/Down/pacman3.png"]
         self.ANI_DURATION = 16
         self.movement_direction = [0, 0]
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
@@ -33,6 +32,7 @@ class Pacman:
         self.movement_direction[1] = -1
         self.movement_direction[0] = 0
         self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+
     def down(self):
         self.movement_direction[1] = 1
         self.movement_direction[0] = 0
@@ -78,13 +78,4 @@ class Pacman:
         pacman_image_rect.y = gv.pacman.position[1]
         surface.blit(self.image, pacman_image_rect)
 
-#    gv.pixel_colour_detection(self.position, gv.keys_pressed, self.movement_speed)
-
-
-
-
-    '''def pacman_counter_mocement():
-        gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
-        if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:
-            gv.pacman.ani_tick_counter = 0'''
-
+    gv.pixel_colour_detection(self.position, gv.keys_pressed, self.movement_speed)

@@ -1,7 +1,7 @@
 # ghost moving randomly
 import random
 
-class Ghost_random:
+class Ghost_random:  # green or blue ghost
     def __init__(self):
         self.movement_direction = [0,0]
         self.movement_speed = 5
