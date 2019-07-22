@@ -21,7 +21,7 @@ def read_pellet_images():
 
 def draw_pellets(surface, current_level):
     for pellet in gv.level_pellets[current_level]:
-        print(pellet)
+        #print(pellet)
         pellet.draw_pellet(surface)
 
 

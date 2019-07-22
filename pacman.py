@@ -29,24 +29,40 @@ class Pacman:
     # define every direction
     # moves the pacman up by "movement_speed"
     def up(self):
-        self.movement_direction[1] = -1
-        self.movement_direction[0] = 0
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+        if gv.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
+            self.movement_direction[1] = -1
+            self.movement_direction[0] = 0
+            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+        else:
+            self.movement_direction[1] = 0
+            self.movement_direction[0] = 0
 
     def down(self):
-        self.movement_direction[1] = 1
-        self.movement_direction[0] = 0
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+        if gv.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
+            self.movement_direction[1] = 1
+            self.movement_direction[0] = 0
+            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+        else:
+            self.movement_direction[1] = 0
+            self.movement_direction[0] = 0
 
     def left(self):
-        self.movement_direction[0] = -1
-        self.movement_direction[1] = 0
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+        if gv.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
+            self.movement_direction[0] = -1
+            self.movement_direction[1] = 0
+            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+        else:
+            self.movement_direction[1] = 0
+            self.movement_direction[0] = 0
 
     def right(self):
-        self.movement_direction[0] = 1
-        self.movement_direction[1] = 0
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+        if gv.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
+            self.movement_direction[0] = 1
+            self.movement_direction[1] = 0
+            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+        else:
+            self.movement_direction[1] = 0
+            self.movement_direction[0] = 0
 
     def move(self):
         x = self.position[0] + (self.movement_speed * self.movement_direction[0])
@@ -78,4 +94,4 @@ class Pacman:
         pacman_image_rect.y = gv.pacman.position[1]
         surface.blit(self.image, pacman_image_rect)
 
-    gv.pixel_colour_detection(self.position, gv.keys_pressed, self.movement_speed)
+
