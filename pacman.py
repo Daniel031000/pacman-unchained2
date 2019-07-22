@@ -69,6 +69,7 @@ class Pacman:
         y = self.position[1] + (self.movement_speed * self.movement_direction[1])
         self.position = [x, y]
 
+
     # loops through the events and calls the appropriate movement function upon an event
     def pacman_event_handler(self, keys_pressed):
         for i in range(len(keys_pressed)):

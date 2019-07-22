@@ -35,6 +35,18 @@ while 1:
 
     # animation
     ani.blit_level(LEVEL_PATHS[0], screen)
+    '''if gv.score == 123:
+        ani.blit_counter_level(LEVEL_PATHS[1], screen]
+        gv.current_level = 1
+        gv.score = 0
+        Reachedsecondlevel = True
+        elif score == 23 and reachedsecondlevel=True
+        ani.blit_counter_level(LEVEL_PATHS[2, screen]
+        gv.current_level = 2 
+        reachedthird level = True
+        if score==23 and reachedthird level = true 
+        gv.current_level = 2
+        gv.score = 0'''
     ani.draw_pellets(screen, gv.current_level)
 
     gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
