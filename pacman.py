@@ -1,7 +1,7 @@
 import pygame
 import global_variables as gv
 import animation as ani
-import pellet as pe
+import pellet as p
 import isStripmoveable as IS
 
 # define player class
@@ -34,6 +34,7 @@ class Pacman:
             self.movement_direction[1] = -1
             self.movement_direction[0] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+            p.eating_pellet()
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -43,6 +44,7 @@ class Pacman:
             self.movement_direction[1] = 1
             self.movement_direction[0] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+            p.eating_pellet()
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -52,6 +54,7 @@ class Pacman:
             self.movement_direction[0] = -1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+            p.eating_pellet()
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -61,6 +64,7 @@ class Pacman:
             self.movement_direction[0] = 1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+            p.eating_pellet()
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -90,7 +94,7 @@ class Pacman:
     def blit_pacman(self, surface):
         image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[image_nr - 1])
-        pygame.transform.rotate(self.image, 45)
+        #pygame.transform.rotate(self.image, 45)
         pacman_image_rect = self.image.get_rect()
         pacman_image_rect.x = gv.pacman.position[0]
         pacman_image_rect.y = gv.pacman.position[1]
