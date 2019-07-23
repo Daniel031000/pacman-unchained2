@@ -55,5 +55,7 @@ while 1:
 
     gv.pacman.blit_pacman(gv.screen)
 
+    print(gv.score)
+
     pygame.display.flip()
     clock.tick(30)

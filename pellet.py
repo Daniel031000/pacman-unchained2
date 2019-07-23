@@ -17,14 +17,14 @@ class Pellet:
 
 
 def eating_pellet():
-    amount_of_pellets = len(gv.level_pellets[gv.current_level])
-    for i in range (amount_of_pellets):
-        every_single_pellet = gv.level_pellets[gv.current_level][i]
-    if gv.pacman.image.get_rect().contains(every_single_pellet.rect):
-        gv.score = gv.score +1
-        gv.level_pellets.remove(i)
-        print(gv.score)
-        print(len(gv.level_pellets[gv.current_level]))
+    counter = 0
+    while counter < len(gv.level_pellets[gv.current_level]):
+        every_single_pellet = gv.level_pellets[gv.current_level][counter]
+        if gv.pacman.rect.contains(every_single_pellet.rect):
+            gv.score = gv.score + 1
+            del gv.level_pellets[gv.current_level][counter]
+        counter = counter + 1
+
 
 
 
