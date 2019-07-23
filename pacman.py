@@ -32,8 +32,8 @@ class Pacman:
     def up(self):
         if IS.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
             self.movement_direction[1] = -1
-            self.movement_direction[0] = 0
-            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+            self.movement_direction[0] = 0  #
+            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # rotating image in the right direction
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
