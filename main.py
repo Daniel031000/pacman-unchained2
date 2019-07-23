@@ -10,7 +10,7 @@ pygame.init()
 BLACK = (0, 0, 0)
 LEVEL_PATHS = ["Graphics/levels/level1.png", "Graphics/levels/level2.png", "Graphics/levels/level3.png"]
 
-screen = pygame.display.set_mode(gv.screensize)
+gv.screen = pygame.display.set_mode(gv.screensize)
 
 pygame.display.set_caption("Daniel's PacMan")
 clock = pygame.time.Clock()
@@ -34,7 +34,7 @@ while 1:
     gv.pacman.move()
 
     # animation
-    ani.blit_level(LEVEL_PATHS[0], screen)
+    ani.blit_level(LEVEL_PATHS[0], gv.screen)
     '''if gv.score == 123:
         ani.blit_counter_level(LEVEL_PATHS[1], screen]
         gv.current_level = 1
@@ -47,13 +47,13 @@ while 1:
         if score==23 and reachedthird level = true 
         gv.current_level = 2
         gv.score = 0'''
-    ani.draw_pellets(screen, gv.current_level)
+    ani.draw_pellets(gv.screen, gv.current_level)
 
     gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
     if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:
         gv.pacman.ani_tick_counter = 0
 
-    gv.pacman.blit_pacman(screen)
+    gv.pacman.blit_pacman(gv.screen)
 
     pygame.display.flip()
     clock.tick(30)

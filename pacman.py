@@ -1,6 +1,7 @@
 import pygame
 import global_variables as gv
 import animation as ani
+import pellet as pe
 
 
 # define player class
@@ -33,6 +34,10 @@ class Pacman:
             self.movement_direction[1] = -1
             self.movement_direction[0] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # moving image in the right direction
+            if gv.eating_pellets(self.position, gv.keys_pressed, self.movement_speed):
+                pe.disappear(gv.screen, )
+                gv.score = gv.score + 1
+                print(gv.score)
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -42,6 +47,10 @@ class Pacman:
             self.movement_direction[1] = 1
             self.movement_direction[0] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+            if gv.eating_pellets(self.position, gv.keys_pressed, self.movement_speed):
+                gv.score = gv.score + 1
+                #pygame.draw.rect(gv.screen, (0, 0, 0), (gv.strip_starting_point[0], gv.strip_starting_point[1]))
+                print(gv.score)
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -51,6 +60,9 @@ class Pacman:
             self.movement_direction[0] = -1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+            if gv.eating_pellets(self.position, gv.keys_pressed, self.movement_speed):
+                gv.score = gv.score + 1
+                print(gv.score)
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -60,6 +72,10 @@ class Pacman:
             self.movement_direction[0] = 1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+            if gv.eating_pellets(self.position, gv.keys_pressed, self.movement_speed):
+                gv.score = gv.score + 1
+                print(gv.score)
+
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
