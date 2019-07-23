@@ -35,7 +35,7 @@ while 1:
 
     # animation
     ani.blit_level(LEVEL_PATHS[0], gv.screen)
-    '''if gv.score == 123:
+    '''if gv.score == 587:
         ani.blit_counter_level(LEVEL_PATHS[1], screen]
         gv.current_level = 1
         gv.score = 0

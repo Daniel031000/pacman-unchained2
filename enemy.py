@@ -3,6 +3,8 @@ import random
 
 class Ghost_random:  # green or blue ghost
     def __init__(self):
+        self.ENEMY_BLUE_LOADED_IMAGE = ["Graphics/enemys/GeistBlau.png"]
+        self.ENEMY_ORANGE_LOADED_IMAGE = ["Graphics/enemys/GeistOrange.png"]
         self.movement_direction = [0,0]
         self.movement_speed = 5
         self.position = [x, y]
