@@ -8,20 +8,29 @@ pygame.init()
 
 # constants
 BLACK = (0, 0, 0)
-#LEVEL_PATHS = ["Graphics/levels/level1.png", "Graphics/levels/level2.png", "Graphics/levels/level3.png"]
+reached_second_level = False
+reached_third_level = False
+in_first_level = True
+gameRunning = False
+x = 0
 
+# generating a screen
 gv.screen = pygame.display.set_mode(gv.screensize)
-
 pygame.display.set_caption("Daniel's PacMan")
-clock = pygame.time.Clock()
+gv.screen.fill(BLACK)
+
+
 
 # instantiate pacman class
 gv.pacman = pm.Pacman()
 gv.pacman_tick_counter = 0
 
-#
+# relevant for the game loop
 ani.read_pellet_images()
+clock = pygame.time.Clock()
 
+'''if gv.keys_pressed[pygame.K_SPACE]:
+    gameRunning = True'''
 
 
 while 1:
@@ -36,20 +45,31 @@ while 1:
     gv.pacman.move()
 
     # animation
-    ani.blit_level(gv.LEVEL_PATHS[0], gv.screen)
-    '''if gv.score == 587:
-        ani.blit_level(LEVEL_PATHS[1], gv.screen]
+    if gv.score == 594 and in_first_level:  # changes to 2nd level
+        gv.pacman.position[0] = 480  # reset pacman position
+        gv.pacman.position[1] = 200
+        in_first_level = False
         gv.current_level = 1
         gv.score = 0
-        Reachedsecondlevel = True
-        elif score == 23 and reachedsecondlevel=True
-        ani.blit_counter_level(LEVEL_PATHS[2, gv.screen]
-        gv.current_level = 2 
-        reachedthird level = True
-        if score==23 and reachedthird level = true 
+        reached_second_level = True
+        x = 1  # new level path
+        ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
+
+    elif gv.score == 422 and reached_second_level:  # changes to 3rd level
+        gv.pacman.position[0] = 480  # reset pacman position
+        gv.pacman.position[1] = 200
         gv.current_level = 2
-        gv.score = 0'''
+        reached_third_level = True
+        x = 2  # new level path
+        gv.x = 480  # reset pacman position
+        gv.y = 200
+        ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
+    elif gv.score == 340 and reached_third_level:
+        pass
+
+    ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
     ani.draw_pellets(gv.screen, gv.current_level)
+
 
     gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
     if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:

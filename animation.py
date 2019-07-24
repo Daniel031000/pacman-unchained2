@@ -3,7 +3,8 @@ import global_variables as gv
 import pellet
 
 RED = (255, 0, 0)
-PELLET_IMAGE_PATHS = ["Graphics/levels/level1_pellets.png", "Graphics/levels/level2_pellets.png", "Graphics/levels/level3_pellets.png"]
+PELLET_IMAGE_PATHS = ["Graphics/levels/level1_pellets.png", "Graphics/levels/level2_pellets.png",
+                      "Graphics/levels/level3_pellets.png"]
 pellet_coordinates_array = []
 
 

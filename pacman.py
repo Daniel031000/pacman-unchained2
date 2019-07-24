@@ -1,6 +1,5 @@
 import pygame
 import global_variables as gv
-import animation as ani
 import pellet as p
 import isStripmoveable as IS
 
