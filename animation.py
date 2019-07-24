@@ -29,4 +29,13 @@ def blit_level(path, surface):
     level_image = pygame.image.load(path)
     surface.blit(level_image, level_image.get_rect())
 
+# building the portal
+
+def portal(position):
+    if position[0] > 950:
+        position = [20, 257]
+    elif position[0] < 50:
+        position = [993, 257]
+    return position
+
 

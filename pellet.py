@@ -16,7 +16,7 @@ class Pellet:
         pygame.draw.rect(surface, self.color, self.rect, 0)  # 0 -> filled
 
 
-def eating_pellet():
+def eating_pellet():  # if the pacman eats the pellet it will be deleted from the list and disappear from the screen
     counter = 0
     while counter < len(gv.level_pellets[gv.current_level]):
         every_single_pellet = gv.level_pellets[gv.current_level][counter]

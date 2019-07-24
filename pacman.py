@@ -34,6 +34,7 @@ class Pacman:
             self.movement_direction[1] = -1
             self.movement_direction[0] = 0  #
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP  # rotating image in the right direction
+
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -43,6 +44,7 @@ class Pacman:
             self.movement_direction[1] = 1
             self.movement_direction[0] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -52,6 +54,8 @@ class Pacman:
             self.movement_direction[0] = -1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+            if self.position[0] < 20:
+                self.position = [950, 235]
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -61,6 +65,9 @@ class Pacman:
             self.movement_direction[0] = 1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+            if self.position[0] > 950:
+                self.position = [20, 235]
+
         else:
             self.movement_direction[1] = 0
             self.movement_direction[0] = 0
@@ -91,5 +98,9 @@ class Pacman:
         self.rect.x = gv.pacman.position[0]
         self.rect.y = gv.pacman.position[1]
         surface.blit(self.image, self.rect)
+
+
+
+
 
 
