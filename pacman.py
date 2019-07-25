@@ -26,9 +26,10 @@ class Pacman:
         self.position = [x, y]
         self.movement_speed = 4  # (movement_speed = pixels/tick)
 
-    # define every direction
+
     # moves the pacman up by "movement_speed"
     def up(self):
+        # define every direction
         if IS.isStripmoveable(self.position, gv.keys_pressed, self.movement_speed):
             self.movement_direction[1] = -1
             self.movement_direction[0] = 0  #
@@ -53,7 +54,8 @@ class Pacman:
             self.movement_direction[0] = -1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
-            if self.position[0] < 20:
+            # portal
+            if self.position[0] < 20:  # if the x-coordinate is under 20 than change your position
                 self.position = [950, 235]
         else:
             self.movement_direction[1] = 0
@@ -64,7 +66,8 @@ class Pacman:
             self.movement_direction[0] = 1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
-            if self.position[0] > 980:
+            # portal
+            if self.position[0] > 980:  # if the x-coordinate is over 980 than change your position
                 self.position = [20, 235]
 
         else:
@@ -72,10 +75,11 @@ class Pacman:
             self.movement_direction[0] = 0
 
     def move(self):
+        # updating its position
         x = self.position[0] + (self.movement_speed * self.movement_direction[0])
         y = self.position[1] + (self.movement_speed * self.movement_direction[1])
         self.position = [x, y]
-        p.eating_pellet()
+        p.eating_pellet()  # eating pellets while moving
 
     # loops through the events and calls the appropriate movement function upon an event
     def pacman_event_handler(self, keys_pressed):

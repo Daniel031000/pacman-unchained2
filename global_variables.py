@@ -1,4 +1,3 @@
-
 screensize = (1000, 500)
 keys_pressed = []
 pacman = 0

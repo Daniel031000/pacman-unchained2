@@ -2,6 +2,7 @@ import pygame
 import global_variables as gv
 import pellet
 
+# constants
 RED = (255, 0, 0)
 PELLET_IMAGE_PATHS = ["Graphics/levels/level1_pellets.png", "Graphics/levels/level2_pellets.png",
                       "Graphics/levels/level3_pellets.png"]
@@ -30,13 +31,8 @@ def blit_level(path, surface):
     level_image = pygame.image.load(path)
     surface.blit(level_image, level_image.get_rect())
 
-# building the portal
 
-def portal(position):
-    if position[0] > 950:
-        position = [20, 257]
-    elif position[0] < 50:
-        position = [993, 257]
-    return position
+
+
 
 

@@ -6,7 +6,7 @@ class Pellet:
     def __init__(self, position):
         self.position = position
         self.color = (255, 242, 0)
-        self.rect =(self.position[0], self.position[1], 2, 2)
+        self.rect = (self.position[0], self.position[1], 2, 2)
 
     def __str__(self):
         return "<Pellet, c: " + str(self.color) + "; p:" + str(self.position)
