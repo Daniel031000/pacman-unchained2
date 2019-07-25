@@ -3,9 +3,10 @@ import sys
 import global_variables as gv
 import pacman as pm
 import animation as ani
-import enemy_random as em
-pygame.init()
+import ghost as gh
+import random
 
+pygame.init()
 
 # constants
 BLACK = (0, 0, 0)
@@ -20,17 +21,18 @@ gv.screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel's PacMan")
 gv.screen.fill(BLACK)
 
-
-
-# instantiate pacman class
-gv.pacman = pm.Pacman()
+# counter for the pacman animation
 gv.pacman_tick_counter = 0
+
+# create pacman and ghost objects
+gv.pacman = pm.Pacman()
+ghost_starting_positions = [[960, 460], [960, 460], [960, 460], [960, 460]]
+for ghost_type in range(4):
+    gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))
 
 # relevant for the game loop
 ani.read_pellet_images()
 clock = pygame.time.Clock()
-
-
 
 
 while 1:
@@ -48,6 +50,9 @@ while 1:
     # game logic loop
     gv.pacman.pacman_event_handler(gv.keys_pressed)
     gv.pacman.move()
+    for ghost in gv.ghosts:
+        ghost.move()
+
 
     # animation
     if gv.score == 594 and in_first_level:  # changes to 2nd level
@@ -79,12 +84,10 @@ while 1:
         gv.pacman.ani_tick_counter = 0
 
     gv.pacman.blit_pacman(gv.screen)
+    for ghost in gv.ghosts:
+        ghost.blit_ghost(gv.screen)
 
 
-    em.Ghost_random_blue.move()
-    em.Ghost_random_turquoise.move()
-    em.blit_enemy_turquoise(gv.screen)
-    em.Ghost_random_blue(gv.screen)
 
     pygame.display.flip()
     clock.tick(30)
