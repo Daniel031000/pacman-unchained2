@@ -1,3 +1,4 @@
+# MOMS SPAGHETTI
 import pygame
 import sys
 import global_variables as gv
