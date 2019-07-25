@@ -67,7 +67,7 @@ class Pacman:
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
             # portal
-            if self.position[0] > 980:  # if the x-coordinate is over 980 than change your position
+            if self.position[0] > 950:  # if the x-coordinate is over 980 than change your position
                 self.position = [20, 235]
 
         else:

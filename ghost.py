@@ -1,15 +1,17 @@
 # ghost moving randomly
 import pygame
 import random
-import time
+import isStripmoveable as IS
+import global_variables as gv
+
 
 
 
 class Ghost:
-    def __init__(self, ghost_type, starting_position):
-        ENEMY_SOURCE_IMAGES = ["Graphics/enemys/GeistBlau.png", "Graphics/enemys/GeistOrange.png",
-                               "Graphics/enemys/GeistRot.png", "Graphics/enemys/GeistTürkis.png"]
-        self.image = pygame.image.load(ENEMY_SOURCE_IMAGES[ghost_type])
+    def __init__(self,ghost_type, starting_position):  # ghost_type
+        ENEMY_SOURCE_IMAGES = ["Graphics\enemys\GeistBlau.png", "Graphics\enemys\GeistOrange.png",
+                               "Graphics\enemys\GeistRot.png", "Graphics\enemys\GeistTürkis.png"]
+        self.image = pygame.image.load(ENEMY_SOURCE_IMAGES[ghost_type])  # ghost_type
         self.rect = self.image.get_rect()
         self.movement_direction = [0, 0]
         self.movement_speed = 4
@@ -20,12 +22,13 @@ class Ghost:
         tick_interval = 90
         change_direction = random.randint(0, tick_interval + 1)
         if change_direction == tick_interval:
-            ran_x = random.randint(-1, 1)
-            ran_y = 0
-            if ran_x == 0:
+            gv.ran_x = random.randint(-1, 1)
+            gv.ran_y = 0
+            if gv.ran_x == 0:
                 y_directions = [-1, 1]
-                ran_y = y_directions[random.randint(0, 1)]
-            self.movement_direction = [ran_x, ran_y]
+                gv.ran_y = y_directions[random.randint(0, 1)]
+            self.movement_direction = [gv.ran_x, gv.ran_y]
+
 
     def move(self):  # updating position
         self.set_random_direction()

@@ -1,11 +1,11 @@
-# MOMS SPAGHETTI
+
 import pygame
 import sys
 import global_variables as gv
 import pacman as pm
 import animation as ani
 import ghost as gh
-import random
+
 
 pygame.init()
 
@@ -14,7 +14,7 @@ BLACK = (0, 0, 0)
 reached_second_level = False
 reached_third_level = False
 in_first_level = True
-gameRunning = False
+
 x = 0
 
 # generating a screen
@@ -27,9 +27,9 @@ gv.pacman_tick_counter = 0
 
 # create pacman and ghost objects
 gv.pacman = pm.Pacman()
-ghost_starting_positions = [[960, 460], [960, 460], [960, 460], [960, 460]]
+ghost_starting_positions = [[950, 450], [950, 450], [950, 450], [950, 450]]
 for ghost_type in range(4):
-    gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))
+    gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))   # ghost_type
 
 # relevant for the game loop
 ani.read_pellet_images()
