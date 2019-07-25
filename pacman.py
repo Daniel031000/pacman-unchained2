@@ -64,7 +64,7 @@ class Pacman:
             self.movement_direction[0] = 1
             self.movement_direction[1] = 0
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
-            if self.position[0] > 950:
+            if self.position[0] > 980:
                 self.position = [20, 235]
 
         else:

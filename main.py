@@ -3,6 +3,7 @@ import sys
 import global_variables as gv
 import pacman as pm
 import animation as ani
+import enemy_random as em
 pygame.init()
 
 
@@ -29,12 +30,16 @@ gv.pacman_tick_counter = 0
 ani.read_pellet_images()
 clock = pygame.time.Clock()
 
-'''if gv.keys_pressed[pygame.K_SPACE]:
-    gameRunning = True'''
+
 
 
 while 1:
-    # event loop
+    '''gv.screen.fill(BLACK)
+
+    if gv.keys_pressed[pygame.K_SPACE]:
+        gameRunning = True
+        while gameRunning:   # event loop'''
+
     gv.keys_pressed = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -53,7 +58,6 @@ while 1:
         gv.score = 0
         reached_second_level = True
         x = 1  # new level path
-        ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
 
     elif gv.score == 422 and reached_second_level:  # changes to 3rd level
         gv.pacman.position[0] = 480  # reset pacman position
@@ -63,7 +67,6 @@ while 1:
         x = 2  # new level path
         gv.x = 480  # reset pacman position
         gv.y = 200
-        ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
     elif gv.score == 340 and reached_third_level:
         pass
 
@@ -77,7 +80,11 @@ while 1:
 
     gv.pacman.blit_pacman(gv.screen)
 
-    #print(gv.score)
+
+    em.Ghost_random_blue.move()
+    em.Ghost_random_turquoise.move()
+    em.blit_enemy_turquoise(gv.screen)
+    em.Ghost_random_blue(gv.screen)
 
     pygame.display.flip()
     clock.tick(30)
