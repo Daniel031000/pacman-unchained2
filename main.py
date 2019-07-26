@@ -28,6 +28,8 @@ gv.pacman_tick_counter = 0
 # create pacman and ghost objects
 gv.pacman = pm.Pacman([480, 200])
 ghost_starting_positions = [[30, 30], [950, 30], [30, 450], [950, 450]]
+ghost_second_level_positions = [[30, 30], [950, 30], [30, 450], [950, 450]]
+ghost_third_level_positions = [[30, 30], [950, 30], [30, 450], [950, 450]]
 for ghost_type in range(4):
     gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))
 
@@ -82,8 +84,8 @@ while not gv.game_over:
         gv.score = 0
         reached_second_level = True
         x = 1  # new level path
-        for ghost in gv.ghosts:
-            ghost.position = ghost_starting_positions
+        for j in range(4):
+            gv.ghosts[j].position = ghost_second_level_positions[j]
 
     elif gv.score == 422 and reached_second_level:  # changes to 3rd level
         gv.pacman.position[0] = 480  # reset pacman position

@@ -70,6 +70,7 @@ class Ghost:
 
     def blit_ghost(self, surface):  # draw the ghosts onto the surface
         self.rect = self.image.get_rect()
+        print(self.position[0])
         self.rect.x = self.position[0]
         self.rect.y = self.position[1]
         surface.blit(self.image, self.rect)
