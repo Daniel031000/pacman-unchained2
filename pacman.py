@@ -1,6 +1,6 @@
 import pygame
 import global_variables as gv
-import pellet as p
+
 
 
 class Pacman:
@@ -16,13 +16,13 @@ class Pacman:
         self.ANI_DURATION = 16
         self.movement_direction = gv.directions[4]
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT  # starting picture is to the left
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[0])
         self.rect = self.image.get_rect()
         self.position = starting_position
         self.movement_speed = 4  # (movement_speed = pixels/tick)
 
-    def change_direction(self, direction):
+    def change_direction(self, direction):  # changes animation of the pacman and updates the direction
         if direction == 0:
             self.movement_direction = gv.directions[0]
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP
@@ -37,35 +37,36 @@ class Pacman:
             self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
 
     def next_move_is_possible(self):
-        offset = []
+        offset = []  # describes the shift of the active pixel
         ap_direction = []
-        if self.movement_direction == gv.directions[0]:
+        # every single if looks for the right active pixel
+        if self.movement_direction == gv.directions[0]:  # up
             offset = [0, self.movement_speed * (-1)]
             ap_direction = gv.directions[3]
-        elif self.movement_direction == gv.directions[1]:
+        elif self.movement_direction == gv.directions[1]:  # down
             offset = [0, 25 + self.movement_speed]
             ap_direction = gv.directions[3]
-        elif self.movement_direction == gv.directions[2]:
+        elif self.movement_direction == gv.directions[2]:  # left
             offset = [self.movement_speed * (-1), 0]
             ap_direction = gv.directions[1]
-        elif self.movement_direction == gv.directions[3]:
+        elif self.movement_direction == gv.directions[3]:  # right
             offset = [25 + self.movement_speed, 0]
             ap_direction = gv.directions[1]
         elif self.movement_direction == gv.directions[4]:
             return True
 
-        for i in range(25):
+        for i in range(25):  # active pixel -> active string
             x = self.position[0] + offset[0] + ap_direction[0] * i
             y = self.position[1] + offset[1] + ap_direction[1] * i
-            if gv.screen.get_at([x, y]) == (0, 18, 255, 255):
+            if gv.screen.get_at([x, y]) == (0, 18, 255, 255):  # checks if the pixels are blue
                 return False
 
         return True
 
-    def teleport(self):
-        if self.position[0] < 25:
+    def teleport(self):  # teleports if he hits a certain x
+        if self.position[0] < 20:
             self.position[0] = 965
-        elif self.position[0] > 965:
+        elif self.position[0] > 970:
             self.position[0] = 25
 
     def move(self):
@@ -90,7 +91,7 @@ class Pacman:
             elif keys_pressed[pygame.K_d] or keys_pressed[pygame.K_RIGHT]:
                 self.change_direction(3)
 
-    # draws the pacman to the screen
+    # draws the pacman to the screen and makes sure the animations looks moving
     def blit_pacman(self, surface):
         image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[image_nr - 1])
@@ -108,7 +109,7 @@ class Pacman:
                 del gv.level_pellets[gv.current_level][counter]
             counter = counter + 1
 
-    def test_ghost_collision(self):
+    def test_ghost_collision(self):  # tests if the rectangle of the ghost touches the pacmans rectangle
         for ghost in gv.ghosts:
             if self.rect.colliderect(ghost.rect):
                 gv.game_over = True
