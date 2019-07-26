@@ -63,8 +63,16 @@ def draw_hint(surface):
 
 def draw_win(surface):
     heading_font = pygame.font.SysFont(None, 50)
-    text = heading_font.render("Congratulations! You won", True, (255, 255, 255))
+    text = heading_font.render("Congratulations! You won!", True, (255, 255, 255))
     text_rect = text.get_rect()
-    text_rect.x = 340
-    text_rect.y = 300
+    text_rect.x = 160
+    text_rect.y = 20
+    surface.blit(text, text_rect)
+
+def draw_lost(surface):
+    heading_font = pygame.font.SysFont(None, 50)
+    text = heading_font.render("GAME OVER! You lost!", True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.x = 160
+    text_rect.y = 20
     surface.blit(text, text_rect)
