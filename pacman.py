@@ -64,8 +64,8 @@ class Pacman:
 
     def teleport(self):
         if self.position[0] < 25:
-            self.position[0] = 965
-        elif self.position[0] > 965:
+            self.position[0] = 975
+        elif self.position[0] > 975:
             self.position[0] = 25
 
     def move(self):
