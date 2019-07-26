@@ -112,7 +112,7 @@ class Pacman:
     def test_ghost_collision(self):  # tests if the rectangle of the ghost touches the pacmans rectangle
         for ghost in gv.ghosts:
             if self.rect.colliderect(ghost.rect):
-                gv.game_over = True
+                gv.lose = True
                 break
 
 

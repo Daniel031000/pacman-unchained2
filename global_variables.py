@@ -2,7 +2,7 @@ screensize = (1000, 500)
 keys_pressed = []
 
 game_over = False
-
+lose = False
 pixel_colour = []
 level_pellets = []
 current_level = 0

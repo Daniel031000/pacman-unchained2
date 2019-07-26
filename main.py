@@ -1,3 +1,5 @@
+'''This is the place where the magic happens'''
+
 import pygame
 import sys
 import global_variables as gv
@@ -15,6 +17,8 @@ reached_second_level = False
 reached_third_level = False
 in_first_level = True
 in_menu = True
+win = False
+
 
 x = 0
 
@@ -76,7 +80,7 @@ while not gv.game_over:
         ghost.move()
 
     # switching levels
-    if gv.score == 7 and in_first_level:  # changes to 2nd level
+    if gv.score == 587 and in_first_level:  # changes to 2nd level
         gv.pacman.position[0] = 480  # reset pacman position
         gv.pacman.position[1] = 200
         in_first_level = False
@@ -84,7 +88,7 @@ while not gv.game_over:
         gv.score = 0
         reached_second_level = True
         x = 1  # new level path
-        for j in range(4):
+        for j in range(4):  # reset the position of the ghosts
             gv.ghosts[j].position = ghost_second_level_positions[j]
 
     elif gv.score == 422 and reached_second_level:  # changes to 3rd level
@@ -97,9 +101,11 @@ while not gv.game_over:
         x = 2  # new level path
         gv.x = 480  # reset pacman position
         gv.y = 200
+        for j in range(4):  # reset the position of the ghosts
+            gv.ghosts[j].position = ghost_second_level_positions[j]
 
     elif gv.score == 340 and reached_third_level:
-        gv.game_over = True
+        win = True
 
 
     # animation
@@ -119,3 +125,40 @@ while not gv.game_over:
     clock.tick(30)
     ran_once = True
 
+    while win:   # the end screen if you win (same system as in menu loop)
+        gv.screen.fill((0, 0, 0))
+        if flash_text_counter == 0:
+            flash_text_counter = 1
+        else:
+            flash_text_counter = 0
+            ani.draw_hint2(gv.screen)
+        gv.keys_pressed = pygame.key.get_pressed()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        if gv.keys_pressed[pygame.K_SPACE]:
+            gv.game_over = True
+            win = False
+        ani.draw_win(gv.screen)  # showing the text
+        pygame.display.flip()
+        clock.tick(5)
+
+    while gv.lose:   # the end screen if you lose (same system as in menu loop)
+        gv.screen.fill((0, 0, 0))
+        if flash_text_counter == 0:
+            flash_text_counter = 1
+        else:
+            flash_text_counter = 0
+            ani.draw_hint2(gv.screen)
+
+        gv.keys_pressed = pygame.key.get_pressed()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+        if gv.keys_pressed[pygame.K_SPACE]:
+            gv.game_over = True
+            gv.lose = False
+        ani.draw_lost(gv.screen)  # showing the text
+        pygame.display.flip()
+        clock.tick(5)
