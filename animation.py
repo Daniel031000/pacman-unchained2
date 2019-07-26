@@ -4,8 +4,8 @@ import pellet
 
 # constants
 RED = (255, 0, 0)
-PELLET_IMAGE_PATHS = ["Graphics/levels/level1_pellets.png", "Graphics/levels/level2_pellets.png",
-                      "Graphics/levels/level3_pellets.png"]
+PELLET_IMAGE_PATHS = ["graphics/levels/level_1_pellets.png", "graphics/levels/level_2_pellets.png",
+                      "graphics/levels/level_3_pellets.png"]
 pellet_coordinates_array = []
 
 
@@ -32,7 +32,28 @@ def blit_level(path, surface):
     surface.blit(level_image, level_image.get_rect())
 
 
+def draw_score(surface):
+    score_font = pygame.font.SysFont(None, 24)
+    text = score_font.render("Score: " + str(gv.score), True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.x = 5
+    text_rect.y = 5
+    surface.blit(text, text_rect)
 
 
+def draw_heading(surface):
+    heading_font = pygame.font.SysFont(None, 100)
+    text = heading_font.render("Pacman Unchained 2", True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.x = 200
+    text_rect.y = 20
+    surface.blit(text, text_rect)
 
 
+def draw_hint(surface):
+    heading_font = pygame.font.SysFont(None, 50)
+    text = heading_font.render("Hit Space to Start", True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.x = 400
+    text_rect.y = 300
+    surface.blit(text, text_rect)

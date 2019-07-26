@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-# MOMS SPAGHETTIZ
-=======
-
->>>>>>> ca739dc8f04a64049b13a5b03207f8080bc251bd
 import pygame
 import sys
 import global_variables as gv
@@ -10,11 +5,10 @@ import pacman as pm
 import animation as ani
 import ghost as gh
 
-
 pygame.init()
+pygame.font.init()
 
-# constants
-BLACK = (0, 0, 0)
+
 reached_second_level = False
 reached_third_level = False
 in_first_level = True
@@ -24,13 +18,12 @@ x = 0
 # generating a screen
 gv.screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel's PacMan")
-gv.screen.fill(BLACK)
 
 # counter for the pacman animation
 gv.pacman_tick_counter = 0
 
 # create pacman and ghost objects
-gv.pacman = pm.Pacman()
+gv.pacman = pm.Pacman([480, 200])
 ghost_starting_positions = [[950, 450], [950, 450], [950, 450], [950, 450]]
 for ghost_type in range(4):
     gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))   # ghost_type
@@ -39,27 +32,44 @@ for ghost_type in range(4):
 ani.read_pellet_images()
 clock = pygame.time.Clock()
 
-
-while 1:
-    '''gv.screen.fill(BLACK)
-
-    if gv.keys_pressed[pygame.K_SPACE]:
-        gameRunning = True
-        while gameRunning:   # event loop'''
+in_menu = True
+flash_text_counter = 0
+while in_menu:
+    gv.screen.fill((0, 0, 0))
+    if flash_text_counter == 0:
+        flash_text_counter = 1
+    else:
+        flash_text_counter = 0
+        ani.draw_hint(gv.screen)
 
     gv.keys_pressed = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
 
-    # game logic loop
+    if gv.keys_pressed[pygame.K_SPACE]:
+        in_menu = False
+
+    ani.draw_heading(gv.screen)
+    pygame.display.flip()
+    clock.tick(5)
+
+ran_once = False
+while not gv.game_over:
+    # event handling
+    gv.keys_pressed = pygame.key.get_pressed()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+
+    # game logic
     gv.pacman.pacman_event_handler(gv.keys_pressed)
     gv.pacman.move()
+    if ran_once:
+        gv.pacman.test_ghost_collision()
     for ghost in gv.ghosts:
         ghost.move()
 
-
-    # animation
     if gv.score == 594 and in_first_level:  # changes to 2nd level
         gv.pacman.position[0] = 480  # reset pacman position
         gv.pacman.position[1] = 200
@@ -80,9 +90,10 @@ while 1:
     elif gv.score == 340 and reached_third_level:
         pass
 
+    # animation
     ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)
     ani.draw_pellets(gv.screen, gv.current_level)
-
+    ani.draw_score(gv.screen)
 
     gv.pacman.ani_tick_counter = gv.pacman.ani_tick_counter + 1
     if gv.pacman.ani_tick_counter >= gv.pacman.ANI_DURATION - 1:
@@ -92,7 +103,6 @@ while 1:
     for ghost in gv.ghosts:
         ghost.blit_ghost(gv.screen)
 
-
-
     pygame.display.flip()
     clock.tick(30)
+    ran_once = True
