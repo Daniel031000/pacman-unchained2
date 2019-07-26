@@ -74,7 +74,7 @@ while not gv.game_over:
         ghost.move()
 
     # switching levels
-    if gv.score == 587 and in_first_level:  # changes to 2nd level
+    if gv.score == 7 and in_first_level:  # changes to 2nd level
         gv.pacman.position[0] = 480  # reset pacman position
         gv.pacman.position[1] = 200
         in_first_level = False
@@ -82,8 +82,8 @@ while not gv.game_over:
         gv.score = 0
         reached_second_level = True
         x = 1  # new level path
-        '''for ghost in gv.ghosts:
-            ghost.position = ghost_starting_positions'''
+        for ghost in gv.ghosts:
+            ghost.position = ghost_starting_positions
 
     elif gv.score == 422 and reached_second_level:  # changes to 3rd level
         gv.pacman.position[0] = 480  # reset pacman position
@@ -95,6 +95,7 @@ while not gv.game_over:
         x = 2  # new level path
         gv.x = 480  # reset pacman position
         gv.y = 200
+
     elif gv.score == 340 and reached_third_level:
         gv.game_over = True
 
