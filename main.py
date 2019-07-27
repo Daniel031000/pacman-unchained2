@@ -6,7 +6,7 @@ import global_variables as gv
 import pacman as pm
 import animation as ani
 import ghost as gh
-import time
+
 
 
 pygame.init()
