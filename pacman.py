@@ -2,7 +2,6 @@ import pygame
 import global_variables as gv
 
 
-
 class Pacman:
     def __init__(self, starting_position):
         self.PACMAN_SOURCE_LEFT = ["graphics/pacman/left/pacman0.png", "graphics/pacman/left/pacman1.png",
@@ -16,7 +15,7 @@ class Pacman:
         self.ANI_DURATION = 16
         self.movement_direction = gv.directions[4]
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT  # starting picture is to the left
+        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT  # starting picture is looking left
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[0])
         self.rect = self.image.get_rect()
         self.position = starting_position
@@ -60,7 +59,6 @@ class Pacman:
             y = self.position[1] + offset[1] + ap_direction[1] * i
             if gv.screen.get_at([x, y]) == (0, 18, 255, 255):  # checks if the pixels are blue
                 return False
-
         return True
 
     def teleport(self):  # teleports if he hits a certain x
@@ -100,7 +98,7 @@ class Pacman:
         self.rect.y = gv.pacman.position[1]
         surface.blit(self.image, self.rect)
 
-    def eat_pellet(self):  # if the pacman eats the pellet it will be deleted from the list and disappear from the screen
+    def eat_pellet(self):  # if the pacman eats the pellet it will be deleted from the list and disappear
         counter = 0
         while counter < len(gv.level_pellets[gv.current_level]):
             pellet = gv.level_pellets[gv.current_level][counter]

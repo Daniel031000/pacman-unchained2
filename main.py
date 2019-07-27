@@ -1,13 +1,9 @@
-'''This is the place where the magic happens'''
-
 import pygame
 import sys
 import global_variables as gv
 import pacman as pm
 import animation as ani
 import ghost as gh
-
-
 
 pygame.init()
 pygame.font.init()
@@ -18,9 +14,9 @@ reached_third_level = False
 in_first_level = True
 in_menu = True
 win = False
-
-
+ran_once = False
 x = 0
+flash_text_counter = 0
 
 # generating a screen
 gv.screen = pygame.display.set_mode(gv.screensize)
@@ -41,8 +37,7 @@ for ghost_type in range(4):
 ani.read_pellet_images()
 clock = pygame.time.Clock()
 
-
-flash_text_counter = 0
+# menu loop
 while in_menu:
     gv.screen.fill((0, 0, 0))
     if flash_text_counter == 0:
@@ -63,7 +58,7 @@ while in_menu:
     pygame.display.flip()
     clock.tick(5)
 
-ran_once = False
+# main game loop
 while not gv.game_over:
     # event handling
     gv.keys_pressed = pygame.key.get_pressed()
@@ -106,7 +101,6 @@ while not gv.game_over:
 
     elif gv.score == 340 and reached_third_level:
         win = True
-
 
     # animation
     ani.blit_level(gv.LEVEL_PATHS[x], gv.screen)

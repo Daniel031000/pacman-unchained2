@@ -2,9 +2,9 @@ import pygame
 import global_variables as gv
 import pellet
 
-
 '''The main idea of the pellets was a second layer on the map which has red points where pellets should be. 
     Later in this file the pellets are replacing the red dots'''
+
 # constants
 RED = (255, 0, 0)  # colour for the red dots
 PELLET_IMAGE_PATHS = ["graphics/levels/level_1_pellets.png", "graphics/levels/level_2_pellets.png",
@@ -12,7 +12,7 @@ PELLET_IMAGE_PATHS = ["graphics/levels/level_1_pellets.png", "graphics/levels/le
 pellet_coordinates_array = []  # coordinates of the red dots
 
 
-def read_pellet_images():
+def read_pellet_images():  # checking the second level for red dots
     for i in range(3):
         gv.level_pellets.append([])
         pellet_image = pygame.image.load(PELLET_IMAGE_PATHS[i])  # loading each path
@@ -28,8 +28,6 @@ def draw_pellets(surface, current_level):  # defines: pellet onto the screen (no
         pellet.draw_pellet(surface)
 
 
-
-
 def blit_level(path, surface):  # draws the whole level
     level_image = pygame.image.load(path)
     surface.blit(level_image, level_image.get_rect())
@@ -43,6 +41,7 @@ def draw_score(surface):  # draws the score in the up right corner
     text_rect.y = 5
     surface.blit(text, text_rect)
 
+
 # text at the start
 def draw_heading(surface):
     heading_font = pygame.font.SysFont(None, 100)
@@ -51,6 +50,7 @@ def draw_heading(surface):
     text_rect.x = 160
     text_rect.y = 20
     surface.blit(text, text_rect)
+
 
 # text at the start
 def draw_hint(surface):
@@ -61,6 +61,7 @@ def draw_hint(surface):
     text_rect.y = 300
     surface.blit(text, text_rect)
 
+
 def draw_win(surface):
     heading_font = pygame.font.SysFont(None, 50)
     text = heading_font.render("Congratulations! You won!", True, (255, 255, 255))
@@ -69,6 +70,7 @@ def draw_win(surface):
     text_rect.y = 20
     surface.blit(text, text_rect)
 
+
 def draw_lost(surface):
     heading_font = pygame.font.SysFont(None, 50)
     text = heading_font.render("GAME OVER! You lost!", True, (255, 255, 255))
@@ -76,6 +78,7 @@ def draw_lost(surface):
     text_rect.x = 250
     text_rect.y = 20
     surface.blit(text, text_rect)
+
 
 def draw_hint2(surface):
     heading_font = pygame.font.SysFont(None, 50)

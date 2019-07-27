@@ -1,8 +1,9 @@
 import pygame
 import random
 import global_variables as gv
-
 '''I was unable to design a code which follows the pacman so I made every ghost random'''
+
+
 class Ghost:
     def __init__(self, ghost_type, starting_position):
         self.image = pygame.image.load(gv.GHOST_SOURCE_IMAGES[ghost_type][0])  # load all images
