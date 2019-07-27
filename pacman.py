@@ -4,37 +4,31 @@ import global_variables as gv
 
 class Pacman:
     def __init__(self, starting_position):
-        self.PACMAN_SOURCE_LEFT = ["graphics/pacman/left/pacman0.png", "graphics/pacman/left/pacman1.png",
-                                   "graphics/pacman/left/pacman2.png", "graphics/pacman/left/pacman3.png"]
-        self.PACMAN_SOURCE_RIGHT = ["graphics/pacman/right/pacman0.png", "graphics/pacman/right/pacman1.png",
-                                    "graphics/pacman/right/pacman2.png", "graphics/pacman/right/pacman3.png"]
-        self.PACMAN_SOURCE_UP = ["graphics/pacman/up/pacman0.png", "graphics/pacman/up/pacman1.png",
-                                 "graphics/pacman/up/pacman2.png", "graphics/pacman/up/pacman3.png"]
-        self.PACMAN_SOURCE_DOWN = ["graphics/pacman/down/pacman0.png", "graphics/pacman/down/pacman1.png",
-                                   "graphics/pacman/down/pacman2.png", "graphics/pacman/down/pacman3.png"]
         self.ANI_DURATION = 16
         self.movement_direction = gv.directions[4]
         self.ani_tick_counter = 0  # animation tick counter used to slow down pacman animation
-        self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT  # starting picture is looking left
+        self.PACMAN_LOADED_IMAGES = gv.PACMAN_SOURCE_IMAGES[2]  # starting picture is looking left
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[0])
         self.rect = self.image.get_rect()
         self.position = starting_position
         self.movement_speed = 4  # (movement_speed = pixels/tick)
 
-    def change_direction(self, direction):  # changes animation of the pacman and updates the direction
+    # changes animation of the pacman and updates the direction
+    def change_direction(self, direction):
         if direction == 0:
             self.movement_direction = gv.directions[0]
-            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_UP
+            self.PACMAN_LOADED_IMAGES = gv.PACMAN_SOURCE_IMAGES[0]
         elif direction == 1:
             self.movement_direction = gv.directions[1]
-            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_DOWN
+            self.PACMAN_LOADED_IMAGES = gv.PACMAN_SOURCE_IMAGES[1]
         elif direction == 2:
             self.movement_direction = gv.directions[2]
-            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_LEFT
+            self.PACMAN_LOADED_IMAGES = gv.PACMAN_SOURCE_IMAGES[2]
         elif direction == 3:
             self.movement_direction = gv.directions[3]
-            self.PACMAN_LOADED_IMAGES = self.PACMAN_SOURCE_RIGHT
+            self.PACMAN_LOADED_IMAGES = gv.PACMAN_SOURCE_IMAGES[3]
 
+    # checks wether the next move of pacman is possible
     def next_move_is_possible(self):
         offset = []  # describes the shift of the active pixel
         ap_direction = []
@@ -61,14 +55,15 @@ class Pacman:
                 return False
         return True
 
-    def teleport(self):  # teleports if he hits a certain x
+    # teleports if he hits a certain x
+    def teleport(self):
         if self.position[0] < 20:
             self.position[0] = 965
         elif self.position[0] > 970:
             self.position[0] = 25
 
+    # updating its position
     def move(self):
-        # updating its position
         self.teleport()
         if not self.next_move_is_possible():
             self.movement_direction = gv.directions[4]
@@ -89,7 +84,7 @@ class Pacman:
             elif keys_pressed[pygame.K_d] or keys_pressed[pygame.K_RIGHT]:
                 self.change_direction(3)
 
-    # draws the pacman to the screen and makes sure the animations looks moving
+    # draws the pacman to the screen and slows the animation down to 16 game ticks
     def blit_pacman(self, surface):
         image_nr = int(gv.pacman.ani_tick_counter / (int(gv.pacman.ANI_DURATION / 4)))
         self.image = pygame.image.load(self.PACMAN_LOADED_IMAGES[image_nr - 1])
@@ -98,7 +93,8 @@ class Pacman:
         self.rect.y = gv.pacman.position[1]
         surface.blit(self.image, self.rect)
 
-    def eat_pellet(self):  # if the pacman eats the pellet it will be deleted from the list and disappear
+    # if the pacman eats the pellet it will be deleted from the list and disappear
+    def eat_pellet(self):
         counter = 0
         while counter < len(gv.level_pellets[gv.current_level]):
             pellet = gv.level_pellets[gv.current_level][counter]
@@ -107,14 +103,9 @@ class Pacman:
                 del gv.level_pellets[gv.current_level][counter]
             counter = counter + 1
 
-    def test_ghost_collision(self):  # tests if the rectangle of the ghost touches the pacmans rectangle
+    # tests if the rectangle of the ghost touches the pacmans rectangle
+    def test_ghost_collision(self):
         for ghost in gv.ghosts:
             if self.rect.colliderect(ghost.rect):
                 gv.lose = True
                 break
-
-
-
-
-
-

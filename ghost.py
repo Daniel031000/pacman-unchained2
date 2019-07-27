@@ -12,7 +12,8 @@ class Ghost:
         self.movement_speed = 4
         self.position = starting_position  # starting position is defined in the main file
 
-    def set_random_direction(self):  # let them move randomly
+    # let them move randomly
+    def set_random_direction(self):
         # change direction every 90 ticks on average
         tick_interval = 30
         change_direction = random.randint(0, tick_interval + 1)
@@ -24,7 +25,8 @@ class Ghost:
                 gv.ran_y = y_directions[random.randint(0, 1)]
             self.movement_direction = [gv.ran_x, gv.ran_y]
 
-    def next_move_is_possible(self):  # sets the active pixel which is checked in the for-loop in the right direction
+    # sets the active pixel which is checked in the for-loop in the right direction
+    def next_move_is_possible(self):
         offset = []  # the offset describes the shift of the pixel depending on the direction
         ap_direction = []
         if self.movement_direction == gv.directions[0]:  # up
@@ -50,13 +52,15 @@ class Ghost:
 
         return True
 
-    def teleport(self):  # if they randomly walk into the portal, they are teleported as well
+    # if they randomly walk into the portal, they are teleported as well
+    def teleport(self):
         if self.position[0] < 18:
             self.position[0] = 965
         elif self.position[0] > 965:
             self.position[0] = 25
 
-    def move(self):  # updating position
+    # updating position
+    def move(self):
         self.set_random_direction()  # load the direction and the teleport function
         self.teleport()
         possible_directions = gv.directions.copy()
@@ -69,7 +73,8 @@ class Ghost:
         y = self.position[1] + (self.movement_speed * self.movement_direction[1])
         self.position = [x, y]
 
-    def blit_ghost(self, surface):  # draw the ghosts onto the surface
+    # draw the ghosts onto the surface
+    def blit_ghost(self, surface):
         self.rect = self.image.get_rect()
         self.rect.x = self.position[0]
         self.rect.y = self.position[1]

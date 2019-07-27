@@ -5,10 +5,12 @@ import pacman as pm
 import animation as ani
 import ghost as gh
 
+# initialize pygame
 pygame.init()
 pygame.font.init()
+clock = pygame.time.Clock()
 
-# constants
+# game logic variables
 reached_second_level = False
 reached_third_level = False
 in_first_level = True
@@ -16,14 +18,14 @@ in_menu = True
 win = False
 ran_once = False
 x = 0
+
+# animation variables
 flash_text_counter = 0
+gv.pacman_tick_counter = 0
 
 # generating a screen
 gv.screen = pygame.display.set_mode(gv.screensize)
 pygame.display.set_caption("Daniel's PacMan")
-
-# counter for the pacman animation
-gv.pacman_tick_counter = 0
 
 # create pacman and ghost objects
 gv.pacman = pm.Pacman([480, 200])
@@ -33,9 +35,8 @@ ghost_third_level_positions = [[30, 30], [950, 30], [30, 450], [950, 450]]
 for ghost_type in range(4):
     gv.ghosts.append(gh.Ghost(ghost_type, ghost_starting_positions[ghost_type]))
 
-# relevant for the game loop
+# create pellet lists
 ani.read_pellet_images()
-clock = pygame.time.Clock()
 
 # menu loop
 while in_menu:
@@ -86,7 +87,8 @@ while not gv.game_over:
         for j in range(4):  # reset the position of the ghosts
             gv.ghosts[j].position = ghost_second_level_positions[j]
 
-    elif gv.score == 422 and reached_second_level:  # changes to 3rd level
+    # changes to 3rd level
+    elif gv.score == 422 and reached_second_level:
         gv.pacman.position[0] = 480  # reset pacman position
         gv.pacman.position[1] = 200
         gv.current_level = 2
@@ -117,7 +119,8 @@ while not gv.game_over:
     clock.tick(30)
     ran_once = True
 
-    while win:   # the end screen if you win (same system as in menu loop)
+    # the end screen if you win (same system as in menu loop)
+    while win:
         gv.screen.fill((0, 0, 0))
         if flash_text_counter == 0:
             flash_text_counter = 1
@@ -135,7 +138,8 @@ while not gv.game_over:
         pygame.display.flip()
         clock.tick(5)
 
-    while gv.lose:   # the end screen if you lose (same system as in menu loop)
+    # the end screen if you lose (same system as in menu loop)
+    while gv.lose:
         gv.screen.fill((0, 0, 0))
         if flash_text_counter == 0:
             flash_text_counter = 1

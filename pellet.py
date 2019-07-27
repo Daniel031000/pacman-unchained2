@@ -12,11 +12,3 @@ class Pellet:
     def draw_pellet(self, surface):
         self.rect = (self.position[0], self.position[1], 2, 2)
         pygame.draw.rect(surface, self.color, self.rect, 0)  # o -> filled with yellow
-
-
-
-
-
-
-
-

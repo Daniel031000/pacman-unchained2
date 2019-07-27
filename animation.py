@@ -2,16 +2,15 @@ import pygame
 import global_variables as gv
 import pellet
 
-'''The main idea of the pellets was a second layer on the map which has red points where pellets should be. 
-    Later in this file the pellets are replacing the red dots'''
-
-# constants
+# variables used for clarity
 RED = (255, 0, 0)  # colour for the red dots
 PELLET_IMAGE_PATHS = ["graphics/levels/level_1_pellets.png", "graphics/levels/level_2_pellets.png",
                       "graphics/levels/level_3_pellets.png"]
 pellet_coordinates_array = []  # coordinates of the red dots
 
 
+# The pellets are generated using a second image
+# This image contains red pixels at the locations that the pellets should be
 def read_pellet_images():  # checking the second level for red dots
     for i in range(3):
         gv.level_pellets.append([])
@@ -23,17 +22,20 @@ def read_pellet_images():  # checking the second level for red dots
                     gv.level_pellets[i].append(pellet.Pellet([x, y]))
 
 
-def draw_pellets(surface, current_level):  # defines: pellet onto the screen (not draw)
+# draws all pellets to the screen (not draw)
+def draw_pellets(surface, current_level):
     for pellet in gv.level_pellets[current_level]:
         pellet.draw_pellet(surface)
 
 
-def blit_level(path, surface):  # draws the whole level
+# draws the level
+def blit_level(path, surface):
     level_image = pygame.image.load(path)
     surface.blit(level_image, level_image.get_rect())
 
 
-def draw_score(surface):  # draws the score in the up right corner
+# draws the score in the top right corner
+def draw_score(surface):
     score_font = pygame.font.SysFont(None, 24)
     text = score_font.render("Score: " + str(gv.score), True, (255, 255, 255))
     text_rect = text.get_rect()
@@ -52,7 +54,7 @@ def draw_heading(surface):
     surface.blit(text, text_rect)
 
 
-# text at the start
+# flashing text at the start
 def draw_hint(surface):
     heading_font = pygame.font.SysFont(None, 50)
     text = heading_font.render("Hit Space to Start", True, (255, 255, 255))
