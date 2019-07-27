@@ -94,8 +94,6 @@ while not gv.game_over:
         reached_third_level = True
         reached_second_level = False
         x = 2  # new level path
-        gv.x = 480  # reset pacman position
-        gv.y = 200
         for j in range(4):  # reset the position of the ghosts
             gv.ghosts[j].position = ghost_second_level_positions[j]
 
